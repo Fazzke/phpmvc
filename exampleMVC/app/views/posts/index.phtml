@@ -1,0 +1,30 @@
+<?php require APP_ROOT_URL .'/views/inc/header.phtml';?>
+    <?php flash('post_message'); ?>
+    <div class="row">
+        <div class="col-md-6">
+            <h1>Nachrichten</h1>    
+        </div>
+        <div class="col-md-6">
+            <a class="btn btn-primary float-right" href="<?php echo BASE_URL; ?>/posts/add">
+                <i class="fas fa-pencil-alt"></i>
+                Füge eine Nachricht zu
+            </a>   
+        </div>
+    </div>
+    <?php foreach($data['posts'] AS $post) : ?>
+    <div class="card card-body mb-3">
+        <h4 class="card-title">
+            <?php echo $post->title; ?>
+        </h4>
+        <div class="bg-light p-2 mb-3">
+            Von <?php echo $post->userName; ?> verfasst am <?php echo $post->createdAt; ?>
+        </div>
+        <p class="card-text"><?php echo $post->nachricht; ?></p>
+        <a href="<?php echo BASE_URL; ?>/posts/show/<?php echo $post->postId; ?>" class="btn btn-dark">
+            Mehr
+        </a>
+    </div>
+    <?php endforeach ?>
+
+
+<?php require APP_ROOT_URL .'/views/inc/footer.phtml';?>

@@ -1,0 +1,31 @@
+<?php require APP_ROOT_URL .'/views/inc/header.phtml';?>
+
+<a href="<?php echo BASE_URL; ?>/posts" class="btn btn-light">
+    <i class="fas fa-backward"></i>
+    Zurück
+</a>
+<div class="card card-body bg-light mt-5">
+
+    <div class="h2">Nachricht editieren</div>
+    <p>Hier kannst du deine Nachricht bearbeiten:</p>
+
+    <form action="<?php echo BASE_URL; ?>/posts/edit/<?php echo $data['id']; ?>" method="POST">
+    
+        <div class="form-group">
+            <label for="title">Titel: <sup>*</sup></label>
+            <input type="text" name="title" 
+            class="form-control form-control-lg <?php echo (!empty($data['title_error'])) ? 'is-invalid' : ''; ?>" 
+            value="<?php echo $data['title']; ?>">
+            <span class="invalid-feedback"><?php echo $data['title_error']; ?></span>
+        </div>
+        <div class="form-group">
+            <label for="nachricht">Nachricht: <sup>*</sup></label>
+            <textarea name="nachricht" class="form-control form-control-lg <?php echo (!empty($data['nachricht_error'])) ? 'is-invalid' : ''; ?>"><?php echo $data['nachricht']; ?></textarea>
+            <span class="invalid-feedback"><?php echo $data['nachricht_error']; ?></span>
+        </div>
+    	<input type="submit" class="btn btn-success" value="Veröffentlichen">
+    </form>
+
+</div>
+
+<?php require APP_ROOT_URL.'/views/inc/footer.phtml';?>

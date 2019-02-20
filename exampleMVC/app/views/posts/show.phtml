@@ -1,0 +1,29 @@
+<?php require APP_ROOT_URL .'/views/inc/header.phtml';?>
+
+<a href="<?php echo BASE_URL; ?>/posts" class="btn btn-light">
+    <i class="fas fa-backward"></i>
+    Zurück
+</a>
+<br />
+<br />
+<h1><?php echo $data['post']->title ?></h1>
+<br />
+<div class="bg-secondary text-white p-2 mb-3">
+    Diese Nachricht wurde am <?php echo $data['post']->created_at; ?> von <?php echo $data['user']->name; ?> geschrieben.
+</div>
+<br />
+<p><?php echo $data['post']->nachricht; ?></p>
+
+<?php if($data['post']->user_id == $_SESSION['user_id']) : ?>
+    <a href="<?php echo BASE_URL; ?>/posts/edit/<?php echo $data['post']->id; ?>" class="btn btn-dark">
+        Editieren
+    </a>
+
+    <form class="float-right" action="<?php echo BASE_URL; ?>/posts/delete/<?php echo $data['post']->id; ?>" method="post" ?>
+
+        <input type="submit" value="Löschen" class="btn btn-danger">
+
+    </form>
+<?php endif; ?>
+
+<?php require APP_ROOT_URL .'/views/inc/footer.phtml';?>
